@@ -7,22 +7,19 @@ Window where Clock and Date should appear
 @author: Felix Reichling
 """
 
-from PyQt5.QtWidgets import QMainWindow, QVBoxLayout, QWidget, QLCDNumber
+from PyQt5.QtWidgets import QLabel, QMainWindow, QVBoxLayout, QWidget, QLCDNumber
 from PyQt5.QtCore import QDate, QTime, QTimer, Qt
 
+
 class MainWindow(QMainWindow):
-    
 
-
-
-
-    def __init__(self, width, height,*args,**kwargs):
+    def __init__(self, width, height, verse, *args,**kwargs):
         
         
         
         super(MainWindow, self).__init__(*args, **kwargs)
        
-        self.initUI(width, height)
+        self.initUI(width, height, verse)
         print('successfully built initUI...')
         timer = QTimer(self)
         timer.timeout.connect(self.showlcd)
@@ -32,15 +29,13 @@ class MainWindow(QMainWindow):
         print('successfully showed lcd...')
 
         
-        
-
-        
-
-    def initUI(self, width, height):
+    def initUI(self, width, height, verse):
         self.lcd = QLCDNumber(self)
         self.lcdDate = QLCDNumber(self)
+        self.label = QLabel(self)
         self.lcd.setDigitCount(8)
         self.lcdDate.setDigitCount(10)
+        self.label.setText(verse)
 
         
 
@@ -50,15 +45,13 @@ class MainWindow(QMainWindow):
         layout = QVBoxLayout()
         layout.addWidget(self.lcd)
         layout.addWidget(self.lcdDate)
+        layout.addWidget(self.label)
 
         widget = QWidget()
         widget.setLayout(layout)
 
         self.setCentralWidget(widget)
         
-
-
-
         self.show()
 
 

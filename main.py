@@ -7,7 +7,8 @@
 from PyQt5.QtWidgets import QApplication
 from gui import MainWindow
 import sys
-
+import requests
+from bs4 import BeautifulSoup
 
 
 """
@@ -22,7 +23,12 @@ if __name__ == "__main__":
     height = screen_res.height()
     width = screen_res.width()
 
-    window = MainWindow(width, height)
+    result = requests.get('https://www.bible.com/verse-of-the-day')
+    page = result.text
+    soup = BeautifulSoup(page, 'html.parser')
+    verse = soup.find('div', class_ = 'verse-wrapper').text
+
+    window = MainWindow(width, height, verse)
 
 
     sys.exit(app.exec_())
