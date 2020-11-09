@@ -20,5 +20,9 @@ if __name__ == "__main__":
     app = QApplication(sys.argv)
     screen_res = app.desktop().screenGeometry()
     height = screen_res.height()
+    width = screen_res.width()
 
-    m = MainWindow()
+    window = MainWindow(width, height)
+
+
+    sys.exit(app.exec_())
