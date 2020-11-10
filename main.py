@@ -23,14 +23,15 @@ if __name__ == "__main__":
     height = screen_res.height()
     width = screen_res.width()
 
+    """
     result = requests.get('https://www.bible.com/verse-of-the-day')
     page = result.text
     soup = BeautifulSoup(page, 'html.parser')
     verse = soup.find('div', class_ = 'verse-wrapper').text
 
     verse = verse.replace(".", ". ")
-
-    window = MainWindow(width, height, verse)
+    """
+    window = MainWindow(width, height)
 
 
     sys.exit(app.exec_())
