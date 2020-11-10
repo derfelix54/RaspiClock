@@ -9,8 +9,11 @@ Window where Clock and Date should appear
 
 from PyQt5.QtGui import QFont
 from PyQt5.QtWidgets import QLabel, QMainWindow, QVBoxLayout, QWidget, QLCDNumber
-from PyQt5.QtCore import QDate, QTime, QTimer, Qt
-import datetime
+from PyQt5.QtCore import QDate, QTime, QTimer, Qt, QUrl, QCoreApplication
+from PyQt5 import QtNetwork
+
+from bs4 import BeautifulSoup
+
 
 
 class MainWindow(QMainWindow):
@@ -20,7 +23,7 @@ class MainWindow(QMainWindow):
         
         
         super(MainWindow, self).__init__(*args, **kwargs)
-       
+
         self.initUI(width, height, verse)
         print('successfully built initUI...')
         timer = QTimer(self)
@@ -78,5 +81,13 @@ class MainWindow(QMainWindow):
         final = date.toString('dd.MM.yyyy')
 
         self.lcdDate.display(final)
+
+
+    
+
+
+
+
+    
 
         
