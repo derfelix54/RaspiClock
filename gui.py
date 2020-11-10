@@ -39,9 +39,9 @@ class MainWindow(QMainWindow):
         
         self.label = QLabel(self)
         self.label.setText(verse)
-        self.label.setFont(QFont('Times', 30, QFont.Bold))
+        self.label.setFont(QFont('Times', 70, QFont.Bold))
         self.label.setAlignment(Qt.AlignCenter)
-        self.label.adjustSize()
+        self.label.setWordWrap(True)
         
 
         
