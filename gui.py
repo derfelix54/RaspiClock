@@ -7,8 +7,10 @@ Window where Clock and Date should appear
 @author: Felix Reichling
 """
 
+from PyQt5.QtGui import QFont
 from PyQt5.QtWidgets import QLabel, QMainWindow, QVBoxLayout, QWidget, QLCDNumber
 from PyQt5.QtCore import QDate, QTime, QTimer, Qt
+import datetime
 
 
 class MainWindow(QMainWindow):
@@ -32,10 +34,14 @@ class MainWindow(QMainWindow):
     def initUI(self, width, height, verse):
         self.lcd = QLCDNumber(self)
         self.lcdDate = QLCDNumber(self)
-        self.label = QLabel(self)
         self.lcd.setDigitCount(8)
         self.lcdDate.setDigitCount(10)
+        
+        self.label = QLabel(self)
         self.label.setText(verse)
+        self.label.setFont(QFont('Times', 20, QFont.Bold))
+        self.label.setAlignment(Qt.AlignCenter)
+        
 
         
 
@@ -61,8 +67,15 @@ class MainWindow(QMainWindow):
         self.lcd.display(text)
 
     def showDate(self):
+        """
         date = QDate.currentDate()
         textDate = date.toString(format = Qt.ISODate)
         self.lcdDate.display(textDate)
- 
+        """
+        date = QDate.currentDate()
+        date.toString(Qt.ISODate)
+        final = date.toString('dd.MM.yyyy')
+
+        self.lcdDate.display(final)
+
         

@@ -28,6 +28,8 @@ if __name__ == "__main__":
     soup = BeautifulSoup(page, 'html.parser')
     verse = soup.find('div', class_ = 'verse-wrapper').text
 
+    verse = verse.replace(".", ". ")
+
     window = MainWindow(width, height, verse)
 
 
