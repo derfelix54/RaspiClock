@@ -33,7 +33,7 @@ class MainWindow(QMainWindow):
         updateVerse = QTimer(self)
         updateVerse.timeout.connect(self.redraw_Verse)
         QTimer.singleShot(0, self.redraw_Verse)
-        updateVerse.start(60000*360) #update every 6 hours
+        updateVerse.start(60000*555) #update every 6 hours
 
         self.showlcd()
         self.showDate()
