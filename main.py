@@ -4,10 +4,11 @@
 
 
 
+from PyQt5.QtCore import QTimer
 from PyQt5.QtWidgets import QApplication
-from gui import MainWindow
+from gui import Crawler, MainWindow
 import sys
-import requests
+import schedule
 from bs4 import BeautifulSoup
 
 
@@ -19,19 +20,21 @@ if __name__ == "__main__":
 
 
     app = QApplication(sys.argv)
-    screen_res = app.desktop().screenGeometry()
-    height = screen_res.height()
-    width = screen_res.width()
+    
+    
+    w = MainWindow()
 
-    """
-    result = requests.get('https://www.bible.com/verse-of-the-day')
-    page = result.text
-    soup = BeautifulSoup(page, 'html.parser')
-    verse = soup.find('div', class_ = 'verse-wrapper').text
+    crawler = Crawler()
+    crawler.verseChanged.connect(w.set_verse)
 
-    verse = verse.replace(".", ". ")
-    """
-    window = MainWindow(width, height)
+    schedule.every().day.at("12:45").do(crawler.start)
+
+    dt = 1000
+    schedule_timer = QTimer(interval = dt, timeout = schedule.run_pending)
+    schedule_timer.start()
+    schedule.run_pending()
+
+    w.showMaximized()
 
 
-    sys.exit(app.exec_())
+    app.exec_()
