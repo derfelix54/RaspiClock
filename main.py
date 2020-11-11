@@ -31,7 +31,7 @@ if __name__ == "__main__":
     crawler = Crawler()
     crawler.verseChanged.connect(w.set_verse)
 
-    schedule.every().day.at("13:15").do(crawler.start)
+    schedule.every().day.at("09:30").do(crawler.start)
 
     dt = 1000
     schedule_timer = QTimer(interval = dt, timeout = schedule.run_pending)

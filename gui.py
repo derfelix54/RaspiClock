@@ -61,7 +61,7 @@ class MainWindow(QMainWindow):
         self.lcdDate = QLCDNumber(digitCount=10)
 
         
-        self.label = QLabel(alignment = Qt.AlignCenter, wordWrap = True)
+        self.label = QLabel(alignment = Qt.AlignCenter, wordWrap = True, text = "I Love you my child! -God")
         self.label.setFont(QFont('Times', 70, QFont.Bold))
 
         self.setGeometry(0, 0, width, height)
