@@ -40,13 +40,13 @@ class Crawler(QObject):
 
 class MainWindow(QMainWindow):
 
-    def __init__(self, parent = None):
+    def __init__(self, width, height, parent = None):
         
         
         
         super(MainWindow, self).__init__(parent)
 
-        self.initUI()
+        self.initUI(width, height)
 
         timer = QTimer(self)
         timer.timeout.connect(self.showlcd)
@@ -56,13 +56,15 @@ class MainWindow(QMainWindow):
         self.showDate()
 
         
-    def initUI(self):
+    def initUI(self, width, height):
         self.lcd = QLCDNumber(digitCount=8)
         self.lcdDate = QLCDNumber(digitCount=10)
 
         
         self.label = QLabel(alignment = Qt.AlignCenter, wordWrap = True)
         self.label.setFont(QFont('Times', 70, QFont.Bold))
+
+        self.setGeometry(0, 0, width, height)
         
 
         layout = QVBoxLayout()
